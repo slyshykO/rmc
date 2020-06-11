@@ -1,0 +1,10 @@
+[package]
+name = "rmc"
+version = "0.1.0"
+authors = ["Oleksiy Slyshyk <alexslyshyk@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+pico-args = "0.3"
