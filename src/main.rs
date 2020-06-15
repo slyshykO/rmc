@@ -2,6 +2,9 @@
 // author: Slyshyk Oleksiy
 //
 
+static DESCRIPTION : &str = "";
+static HELP : &str = "XXX";
+
 mod utils;
 
 struct Args {
@@ -24,16 +27,13 @@ fn main() {
             }
             Ok(src) => {
                 let res = remove_comments(&src);
-                match utils::rewrite_file_content(&args.to_file, &res) {
-                    Err(e) => {
-                        eprintln!("Error:{} [{}:{}]", e, file!(), line!());
-                    }
-                    _ => {}
+                if let Err(e) = utils::rewrite_file_content(&args.to_file, &res) {
+                    eprintln!("Error:{} [{}:{}]", e, file!(), line!());
                 }
             }
         }
     } else {
-        eprintln!("XXX");
+        eprintln!("{}", HELP);
         std::process::exit(1);
     }
 }

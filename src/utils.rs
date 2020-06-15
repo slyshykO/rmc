@@ -19,6 +19,7 @@ where
     OpenOptions::new()
         .write(true)
         .create(true)
+        .truncate(true)
         .open(file_name)
         .and_then(|mut f| f.write_all(new_content.as_ref()))?;
     Ok(())
