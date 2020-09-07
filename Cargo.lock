@@ -2,13 +2,13 @@
 # It is not intended for manual editing.
 [[package]]
 name = "pico-args"
-version = "0.3.1"
+version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3ad1f1b834a05d42dae330066e9699a173b28185b3bdc3dbf14ca239585de8cc"
+checksum = "28b9b4df73455c861d7cbf8be42f01d3b373ed7f02e378d55fa84eafc6f638b1"
 
 [[package]]
 name = "rmc"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "pico-args",
 ]

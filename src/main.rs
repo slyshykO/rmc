@@ -2,8 +2,8 @@
 // author: Slyshyk Oleksiy
 //
 
-static DESCRIPTION : &str = "";
-static HELP : &str = "XXX";
+static DESCRIPTION : &str = "rmc - remove C comments";
+static HELP : &str = "usage:\n\trmc source.c destination.c";
 
 mod utils;
 
@@ -33,6 +33,7 @@ fn main() {
             }
         }
     } else {
+        eprintln!("{}", DESCRIPTION);
         eprintln!("{}", HELP);
         std::process::exit(1);
     }
