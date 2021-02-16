@@ -8,7 +8,7 @@ checksum = "bcd1163ae48bda72a20ae26d66a04d3094135cadab911cff418ae5e33f253431"
 
 [[package]]
 name = "rmc"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "fs-err",
 ]

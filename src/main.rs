@@ -3,7 +3,7 @@
 //
 
 static DESCRIPTION: &str = "rmc - remove C comments";
-static HELP: &str = "usage:\n\trmc source.c destination.c";
+static HELP: &str = "usage:\n\trmc path/to/source.c path/to/destination.c";
 
 mod utils;
 
@@ -12,7 +12,7 @@ struct Args {
     to_file: String,
 }
 
-fn main() {
+fn _main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = std::env::args().collect();
 
     if args.len() > 2 {
@@ -21,20 +21,22 @@ fn main() {
             to_file: args[2].clone(),
         };
 
-        match utils::file_content(&args.from_file) {
-            Err(e) => {
-                eprintln!("Error:{} [{}:{}]", e, file!(), line!());
-            }
-            Ok(src) => {
-                let res = remove_comments(&src);
-                if let Err(e) = utils::rewrite_file_content(&args.to_file, &res) {
-                    eprintln!("Error:{} [{}:{}]", e, file!(), line!());
-                }
-            }
-        }
+        let src = utils::file_content(&args.from_file)?;
+        let res = remove_comments(&src);
+        utils::rewrite_file_content(&args.to_file, &res)?;
+
     } else {
         eprintln!("{}", DESCRIPTION);
         eprintln!("{}", HELP);
+        std::process::exit(1);
+    }
+
+    Ok(())
+}
+
+fn main() {
+    if let Err(e) = _main() {
+        eprintln!("{}", e);
         std::process::exit(1);
     }
 }
