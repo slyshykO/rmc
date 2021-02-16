@@ -2,8 +2,8 @@
 // author: Slyshyk Oleksiy
 //
 
-static DESCRIPTION : &str = "rmc - remove C comments";
-static HELP : &str = "usage:\n\trmc source.c destination.c";
+static DESCRIPTION: &str = "rmc - remove C comments";
+static HELP: &str = "usage:\n\trmc source.c destination.c";
 
 mod utils;
 
@@ -52,8 +52,8 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
 
     let mut prs_state: PrsState = PrsState::Idle;
 
-    let asterisk = 0x2A_u8;  // '*'
-    let slash = 0x2F_u8;     // '/'
+    let asterisk = 0x2A_u8; // '*'
+    let slash = 0x2F_u8; // '/'
     let line_feed = 0x0A_u8; // '\n'
 
     for b in prgm.iter() {
