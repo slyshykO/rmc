@@ -2,9 +2,11 @@
 // author: Slyshyk Oleksiy
 //
 
-static DESCRIPTION: &str = "rmc - remove C comments";
-static HELP: &str = "usage:\n\trmc path/to/source.c path/to/destination.c";
+pub const VERSION: &str = concat!("Ver.:", env!("CARGO_PKG_VERSION"), " .\0");
+static DESCRIPTION: &str = "rmc - remove C comments.";
+static HELP: &str = "usage:\n    rmc path/to/source.c path/to/destination.c";
 
+use bstr::ByteSlice;
 mod utils;
 
 struct Args {
@@ -22,11 +24,11 @@ fn _main() -> Result<(), Box<dyn std::error::Error>> {
         };
 
         let src = utils::file_content(&args.from_file)?;
-        let res = remove_comments(&src);
+        let res = remove_blank_lines(&remove_comments(&src)[0..]);
         utils::rewrite_file_content(&args.to_file, &res)?;
 
     } else {
-        eprintln!("{}", DESCRIPTION);
+        eprintln!("{} {}", DESCRIPTION, VERSION.trim());
         eprintln!("{}", HELP);
         std::process::exit(1);
     }
@@ -94,6 +96,18 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
                     prs_state = PrsState::MultiLineComment;
                 };
             }
+        }
+    }
+
+    res
+}
+
+fn remove_blank_lines(prgm: &[u8]) -> Vec<u8> {
+    let mut res:Vec<u8> = vec![];
+
+    for ln in prgm.lines_with_terminator() {
+        if !ln.chars().all(|x| {" \t\n\r".chars().any(|s| s == x)}) {
+            res.extend(ln);
         }
     }
 
