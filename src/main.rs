@@ -45,6 +45,7 @@ fn main() {
 
 fn remove_comments(prgm: &[u8]) -> Vec<u8> {
     let mut res: Vec<u8> = vec![];
+    res.reserve(prgm.len());
 
     enum PrsState {
         Idle,
@@ -104,6 +105,7 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
 
 fn remove_blank_lines(prgm: &[u8]) -> Vec<u8> {
     let mut res:Vec<u8> = vec![];
+    res.reserve(prgm.len());
 
     for ln in prgm.lines_with_terminator() {
         if !ln.chars().all(|x| {" \t\n\r".chars().any(|s| s == x)}) {
