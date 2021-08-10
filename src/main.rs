@@ -53,7 +53,7 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
         SingleLineConnent,
         MultiLineComment,
         MultiLineCommentEnd,
-    };
+    }
 
     let mut prs_state: PrsState = PrsState::Idle;
 
