@@ -4,32 +4,33 @@ version = 3
 
 [[package]]
 name = "bstr"
-version = "0.2.17"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ba3569f383e8f1598449f1a423e72e99569137b47740b1da11ef19af3d5c3223"
+checksum = "fca0852af221f458706eb0725c03e4ed6c46af9ac98e6a689d5e634215d594dd"
 dependencies = [
- "lazy_static",
  "memchr",
+ "once_cell",
  "regex-automata",
+ "serde",
 ]
 
 [[package]]
 name = "fs-err"
-version = "2.7.0"
+version = "2.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5bd79fa345a495d3ae89fb7165fec01c0e72f41821d642dda363a1e97975652e"
-
-[[package]]
-name = "lazy_static"
-version = "1.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+checksum = "64db3e262960f0662f43a6366788d5f10f7f244b8f7d7d987f560baf5ded5c50"
 
 [[package]]
 name = "memchr"
-version = "2.4.1"
+version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
+checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
+
+[[package]]
+name = "once_cell"
+version = "1.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "86f0b0d4bf799edbc74508c1e8bf170ff5f41238e5f8225603ca7caaae2b7860"
 
 [[package]]
 name = "regex-automata"
@@ -39,8 +40,14 @@ checksum = "6c230d73fb8d8c1b9c0b3135c5142a8acee3a0558fb8db5cf1cb65f8d7862132"
 
 [[package]]
 name = "rmc"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "bstr",
  "fs-err",
 ]
+
+[[package]]
+name = "serde"
+version = "1.0.147"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d193d69bae983fc11a79df82342761dfbf28a99fc8d203dca4c3c1b590948965"
