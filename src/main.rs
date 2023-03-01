@@ -25,8 +25,7 @@ fn _main() -> Result<(), Box<dyn std::error::Error>> {
 
         let src = utils::file_content(&args.from_file)?;
         let res = remove_blank_lines(&remove_comments(&src)[0..]);
-        utils::rewrite_file_content(&args.to_file, &res)?;
-
+        utils::rewrite_file_content(&args.to_file, res)?;
     } else {
         eprintln!("{} {}", DESCRIPTION, VERSION.trim());
         eprintln!("{}", HELP);
@@ -104,11 +103,11 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
 }
 
 fn remove_blank_lines(prgm: &[u8]) -> Vec<u8> {
-    let mut res:Vec<u8> = vec![];
+    let mut res: Vec<u8> = vec![];
     res.reserve(prgm.len());
 
     for ln in prgm.lines_with_terminator() {
-        if !ln.chars().all(|x| {" \t\n\r".chars().any(|s| s == x)}) {
+        if !ln.chars().all(|x| " \t\n\r".chars().any(|s| s == x)) {
             res.extend(ln);
         }
     }
