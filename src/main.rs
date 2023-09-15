@@ -49,7 +49,7 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
     enum PrsState {
         Idle,
         StartComment,
-        SingleLineConnent,
+        SingleLineComment,
         MultiLineComment,
         MultiLineCommentEnd,
     }
@@ -72,14 +72,14 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
             PrsState::StartComment => {
                 match b {
                     _ if b == &asterisk => prs_state = PrsState::MultiLineComment,
-                    _ if b == &slash => prs_state = PrsState::SingleLineConnent,
+                    _ if b == &slash => prs_state = PrsState::SingleLineComment,
                     _ => {
                         res.push(slash);
                         prs_state = PrsState::Idle;
                     }
                 };
             }
-            PrsState::SingleLineConnent => {
+            PrsState::SingleLineComment => {
                 if b == &line_feed {
                     prs_state = PrsState::Idle;
                 };
