@@ -6,6 +6,7 @@ pub const VERSION: &str = concat!("Ver.:", env!("CARGO_PKG_VERSION"), " .\0");
 static DESCRIPTION: &str = "rmc - remove C comments.";
 static HELP: &str = "usage:\n    rmc path/to/source.c path/to/destination.c";
 
+use std::process::ExitCode;
 use bstr::ByteSlice;
 mod utils;
 
@@ -14,7 +15,7 @@ struct Args {
     to_file: String,
 }
 
-fn _main() -> Result<(), Box<dyn std::error::Error>> {
+fn _main() -> Result<ExitCode, Box<dyn std::error::Error>> {
     let args: Vec<String> = std::env::args().collect();
 
     if args.len() > 2 {
@@ -26,19 +27,21 @@ fn _main() -> Result<(), Box<dyn std::error::Error>> {
         let src = utils::file_content(&args.from_file)?;
         let res = remove_blank_lines(&remove_comments(&src)[0..]);
         utils::rewrite_file_content(&args.to_file, res)?;
+        Ok(ExitCode::SUCCESS)
     } else {
         eprintln!("{} {}", DESCRIPTION, VERSION.trim());
         eprintln!("{}", HELP);
-        std::process::exit(1);
+        Ok(ExitCode::FAILURE)
     }
-
-    Ok(())
 }
 
-fn main() {
-    if let Err(e) = _main() {
-        eprintln!("{}", e);
-        std::process::exit(1);
+fn main() -> ExitCode {
+    match _main() {
+        Err(e) => {
+            eprintln!("{}", e);
+            ExitCode::FAILURE
+        }
+        Ok(code) => code,
     }
 }
 
