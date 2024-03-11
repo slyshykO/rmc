@@ -1,11 +1,11 @@
 [package]
 name = "rmc"
-version = "0.2.3"
+version = "0.2.4"
 authors = ["Oleksiy Slyshyk <alexslyshyk@gmail.com>"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fs-err = "2.9"
+fs-err = "2.11"
 bstr = "1"

@@ -6,8 +6,8 @@ pub const VERSION: &str = concat!("Ver.:", env!("CARGO_PKG_VERSION"), " .\0");
 static DESCRIPTION: &str = "rmc - remove C comments.";
 static HELP: &str = "usage:\n    rmc path/to/source.c path/to/destination.c";
 
-use std::process::ExitCode;
 use bstr::ByteSlice;
+use std::process::ExitCode;
 mod utils;
 
 struct Args {
@@ -46,8 +46,7 @@ fn main() -> ExitCode {
 }
 
 fn remove_comments(prgm: &[u8]) -> Vec<u8> {
-    let mut res: Vec<u8> = vec![];
-    res.reserve(prgm.len());
+    let mut res: Vec<u8> = Vec::with_capacity(prgm.len());
 
     enum PrsState {
         Idle,
@@ -106,7 +105,7 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
 }
 
 fn remove_blank_lines(prgm: &[u8]) -> Vec<u8> {
-    let mut res: Vec<u8> = vec![];
+    let mut res: Vec<u8> = Vec::with_capacity(prgm.len());
     res.reserve(prgm.len());
 
     for ln in prgm.lines_with_terminator() {
