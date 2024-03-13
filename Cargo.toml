@@ -1,6 +1,6 @@
 [package]
 name = "rmc"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["Oleksiy Slyshyk <alexslyshyk@gmail.com>"]
 edition = "2021"
 
@@ -9,3 +9,8 @@ edition = "2021"
 [dependencies]
 fs-err = "2.11"
 bstr = "1"
+
+[profile.release]
+lto = true
+opt-level = "s"
+strip = "debuginfo"
