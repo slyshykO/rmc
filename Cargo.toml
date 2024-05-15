@@ -1,6 +1,6 @@
 [package]
 name = "rmc"
-version = "0.2.5"
+version = "0.2.6"
 authors = ["Oleksiy Slyshyk <alexslyshyk@gmail.com>"]
 edition = "2021"
 

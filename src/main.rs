@@ -77,6 +77,7 @@ fn remove_comments(prgm: &[u8]) -> Vec<u8> {
                     _ if b == &slash => prs_state = PrsState::SingleLineComment,
                     _ => {
                         res.push(slash);
+                        res.push(*b);
                         prs_state = PrsState::Idle;
                     }
                 };
