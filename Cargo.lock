@@ -60,7 +60,7 @@ checksum = "368758f23274712b504848e9d5a6f010445cc8b87a7cdb4d7cbee666c1288da3"
 
 [[package]]
 name = "rmc"
-version = "0.2.6"
+version = "0.2.7"
 dependencies = [
  "bstr",
  "fs-err",
